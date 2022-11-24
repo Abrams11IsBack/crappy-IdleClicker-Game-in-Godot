@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Assets/ARLRDBD.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Clicker.gd" type="Script" id=2]
+[ext_resource path="res://Assets/background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/button.png" type="Texture" id=4]
+[ext_resource path="res://Assets/button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://Assets/upgrade_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Assets/upgrade.png" type="Texture" id=7]
+[ext_resource path="res://Assets/flatDark32.png" type="Texture" id=8]
+[ext_resource path="res://Assets/transparentDark31.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Click.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Upgrade.wav" type="AudioStream" id=11]
+[ext_resource path="res://fonts/poco/Poco.tres" type="DynamicFont" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="background" type="Sprite" parent="canvas"]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.533333, 0.555556 )
+texture = ExtResource( 3 )
+
+[node name="button" type="TextureButton" parent="canvas"]
+margin_left = 24.0
+margin_top = 168.0
+margin_right = 700.0
+margin_bottom = 537.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="upgrade" type="TextureButton" parent="canvas"]
+margin_left = 712.0
+margin_top = 192.0
+margin_right = 1112.0
+margin_bottom = 815.0
+rect_scale = Vector2( 0.488613, 0.531304 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+
+[node name="cashAmount" type="RichTextLabel" parent="canvas"]
+margin_left = 24.0
+margin_top = 96.0
+margin_right = 696.0
+margin_bottom = 160.0
+custom_fonts/normal_font = SubResource( 1 )
+
+[node name="upgradeCost" type="RichTextLabel" parent="canvas"]
+margin_left = 712.0
+margin_top = 160.0
+margin_right = 1016.0
+margin_bottom = 184.0
+custom_fonts/normal_font = SubResource( 1 )
+scroll_active = false
+
+[node name="menu" type="TextureButton" parent="canvas"]
+margin_left = 968.0
+margin_top = 8.0
+margin_right = 1016.0
+margin_bottom = 56.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+
+[node name="mineShitCoinLabel" type="RichTextLabel" parent="canvas"]
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 328.0
+margin_bottom = 168.0
+custom_fonts/normal_font = ExtResource( 12 )
+text = "Mine ShitCoin"
+
+[node name="coalPerSec" type="RichTextLabel" parent="canvas"]
+margin_left = 400.0
+margin_top = 544.0
+margin_right = 808.0
+margin_bottom = 584.0
+
+[node name="cashPerSec" type="RichTextLabel" parent="canvas"]
+margin_left = 24.0
+margin_top = 544.0
+margin_right = 392.0
+margin_bottom = 584.0
+
+[node name="pollution" type="RichTextLabel" parent="canvas"]
+margin_left = 816.0
+margin_top = 544.0
+margin_right = 1008.0
+margin_bottom = 584.0
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -20.0
+
+[node name="upgrade" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -20.0
+
+[connection signal="pressed" from="canvas/button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="canvas/upgrade" to="." method="_on_upgrade_pressed"]
+[connection signal="pressed" from="canvas/menu" to="." method="_on_menu_pressed"]
